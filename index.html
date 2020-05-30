@@ -63,6 +63,9 @@ title: Saurabh Jha
             {% for post in site.posts %}
             <li>
               <a href="{{ post.url }}">{{ post.title }}</a>
+              {% for category in post.categories %}
+              <a href="category/{{ category }}/"><span class="category-text">{{ category }}</span></a>
+              {% endfor %}
             </li>
             {% endfor %}
           </ul>
