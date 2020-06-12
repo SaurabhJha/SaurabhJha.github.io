@@ -28,11 +28,11 @@ as adjacency lists.
 
 The pictures that come to my mind when I think about these things look like these:
 
-<img src="/static/img/thread_for_each.png" class="img-responsive center-block" />
+<img src="/static/img/compilers/thread_for_each.png" class="rounded mx-auto d-block" />
 <br/><br/>
-<img src="/static/img/thread_subset.png" class="img-responsive center-block" />
+<img src="/static/img/compilers/thread_subset.png" class="rounded mx-auto d-block" />
 <br/><br/>
-<img src="/static/img/single_thread.png" class="img-responsive center-block" />
+<img src="/static/img/compilers/single_thread.png" class="rounded mx-auto d-block" />
 <br/><br/>
 
 The thing is we can modify the above approach to support hash tables. It may or may not be more challenging
@@ -47,6 +47,6 @@ backend. I am ignoring the code generation part for now. Both of these parts can
 parser part is more like a typical compiler and the optimizer part is more like a multithreaded program using
 a set of locks. The optimizer part I feel is going to be influenced by how relational databases are implemented.
 
-<img src="{{site.url}}/static/img/compiler_phases.png" class="img-responsive center-block" />
+<img src="{{site.url}}/static/img/compilers/compiler_phases.png" class="rounded mx-auto d-block" />
 
 In the coming weeks, I will be working more on these ideas and writing about them as the project progresses
