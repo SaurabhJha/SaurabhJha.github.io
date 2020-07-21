@@ -277,7 +277,7 @@ $$
 
 we end up at state 3 and there is no transition from state 3 on character `e`.
 
-For `abd`, the transitions lead to a final state `4` but for `abe`, the transitions led to a non-final state `3`. This distinction is important
+For `abd`, the transitions lead to a final state `4` but for `abe`, the transitions led to a non-final state `3`. This distinction is important and
 we will use it in what follows.
 
 #### Transition graphs with empty string transitions
@@ -334,7 +334,7 @@ Once we are in `{3}`, the next input character is `b` so we move to `{4}`. For `
 
 <div>
   $$
-    \{1,2,5\} \xrightarrow a \{3\} \xrightarrow b \{4\}
+    \{1,2,5,8\} \xrightarrow a \{3\} \xrightarrow b \{4\}
   $$
 </div>
 
@@ -388,9 +388,7 @@ $$
 Let's focus on the right hand side. There is nothing to be done for
 $$
 \{1\}
-$$. But we need to compute closure(2) and closure(5).
-
-Let's focus on closure(2). There is one transition out of 2 with label `""` to state 8. So,
+$$. But we need to compute closure(2) and closure(5). Let's focus on closure(2). There is one transition out of 2 with label `""` to state 8. So,
 
 $$
   closure(2) = \{2\} \cup closure(8).
@@ -405,10 +403,10 @@ $$
 Thus,
 
 $$
-\begin{align}
+\begin{align*}
   closure(2) & = \{2\} \cup closure(8) \\
   \implies closure(2) & = \{2\} \cup \{8\}
-\end{align}
+\end{align*}
 $$
 
 Let's go back to closure(5). Since there is no transition out of state 5 with label `""`,
@@ -436,7 +434,7 @@ We now have all the ideas we need to define the concept of finite automata.
 
 <div class="definition">
   <p class="definition-title">Definition 8: Finite Automaton</p>
-    <p>A finite automaton is a set of five objects \(\{Q, \Sigma, q_0, F, T\thinspace \}\) defined as follows.</p>
+    <p>A finite automaton is a set of five objects \(\{Q, \Sigma, q_0, F, \delta\thinspace \}\) defined as follows.</p>
   <ol>
     <li>A set of states \(Q\).</li>
     <li>A set of allowable input characters \(\Sigma \).</li>
@@ -478,6 +476,7 @@ $$
 \delta.
 $$
 ```
+{
   1: {"": {2, 5}},
   2: {a: {3}, "": {8}},
   3: {b: {4}},
@@ -486,6 +485,7 @@ $$
   6: {d: {7}},
   7: {},
   8: {}
+}
 ```
 
 Like regular expressions, finite automata define languages.
@@ -518,8 +518,7 @@ In what follows, we will represent an arbitrary finite automata like this.
 
 <img src="{{site.url}}/static/img/compilers/arbitrary_automata.png" class="rounded mx-auto d-block" />
 
-Remember, we defined regular expressions inductively. We define the translation from regular expression to finite automaton for each case. We had two
-basis cases and three inductive cases.
+Remember, we defined regular expressions inductively. We define the translation from regular expression to finite automaton for each basis and inductive case.
 
 <h4>Basis case 1: Finite automata for regular expression \(\epsilon\)</h4>
 <div>
@@ -566,32 +565,35 @@ That is, we do the following things:
 #### Algorithm to implement regular expressions
 What we have discussed so far is an inductive way to convert regular expressions into finite automata. We can readily translate these cases
 into a recursive algorithm. The outline of the algorithm looks like this.
-```
+```cpp
 compile_regex_to_automaton(r)
-  if r is an empty string, construct the empty string finite automaton and return it.
+  if (r is an empty string)
+    construct the empty string finite automaton and return it;
 
-  if r is a single character string, construct the single character finite automaton and return it.
+  if (r is a single character string)
+    construct the single character finite automaton and return it;
 
-  else
-    first_operand = get_first_operand(r)
-    first_operand_automaton = compile_regex_to_automaton(first_operand)
+  else {
+    first_operand = get_first_operand(r);
+    first_operand_automaton = compile_regex_to_automaton(first_operand); // Recursively compile first operand.
   
-    operator = get_operator(r)
+    operator = get_operator(r);
   
     if operator is a kleene star
-      // There is no second operand
-      combined_automaton = apply_kleene_star(first_operand)
-      return combined_automaton
+      // There is no second operand for kleene star.
+      combined_automaton = apply_kleene_star(first_operand);
+      return combined_automaton;
 
-    second_operand = get_second_operand(r)
-    second_operand_automaton = compile_regex_to_automaton(second_operand)
+    second_operand = get_second_operand(r); // Recursively compile second operand.
+    second_operand_automaton = compile_regex_to_automaton(second_operand);
     
     if operator is union
-      combined_automaton = combine_using_union(first_operand_automaton, second_operand_automaton)
+      combined_automaton = combine_using_union(first_operand_automaton, second_operand_automaton);
     else
-      combined_automaton = combine_using_concatenation(first_operand_automaton, second_operand_automaton)
+      combined_automaton = combine_using_concatenation(first_operand_automaton, second_operand_automaton);
     
-    return combined_automaton
+    return combined_automaton;
+  }
 ```
 
 Let's run this algorithm using an example. Suppose our regular expression is `(a|b)(c|d)*`. It describes the language `{ac, ad, bc, bd}`.
@@ -599,13 +601,13 @@ The recursion proceeds as follows.
 
 1. Is `(a|b)(c|d)` an empty string? No.
 2. Is `(a|b)(c|d)` a single character string? No.
-3. Compute the first operand of `(a|b)(c|d)`. We do it by matching parentheses and its `(a|b)`. We trim the outermost parentheses.
+3. Compute the first operand of `(a|b)(c|d)`. Its `(a|b)`. We trim the outermost parentheses.
     1. Is `a|b` an empty string? No.
     2. Is `a|b` a single character string? No.
-    3. Compute the first operand of `a|b`. There are no parentheses so the first character, `a`, is the operand.
+    3. Compute the first operand of `a|b`, which is `a`.
        1. Is `a` an empty string? No.
        2. Is `a` a single character string? Yes, so we construct the single character automaton and return it.
-    4. Compute the operator for `a|b`. Its union `|`.
+    4. Compute the operator for `a|b`. Its the union operator `|`.
     5. Is the operator a kleene star? No.
     6. Compute the second operand of `a|b`. Its `b`.
        1. Is `b` is an empty string? No.
@@ -613,11 +615,10 @@ The recursion proceeds as follows.
     7. Combine the automata for `a` and `b` using the union `|`.
 4. Compute the operator for `(a|b)(c|d)`. Its concatenation.
 5. Is the operator a kleene star? No.
-6. Compute the second operand for `(a|b)(c|d)`. We just remove the first operand and the operator; the remaining substring is the second operand `(c|d)`.
-   We trim the parentheses.
+6. Compute the second operand for `(a|b)(c|d)`. Its `(c|d)`. We trim the parentheses.
     1. Is `c|d` an empty string? No.
     2. Is `c|d` a single character string? No.
-    3. Compute the first operand of `c|d`. There are no parentheses so the first character, `c`, is the operand.
+    3. Compute the first operand of `c|d`. Its `c`.
        1. Is `c` an empty string? No.
        2. Is `c` a single character string? Yes, so we construct the single character automaton and return it.
     4. Compute the operator for `c|d`. Its union `|`.
@@ -631,7 +632,7 @@ The recursion proceeds as follows.
 With this algorithm, we have solved the problem 2 posed above: given a string and a string pattern, determine whether the string matches that pattern.
 We proceed like this.
 
-1. Compute the automaton for the pattern.
+1. Compute the automaton for the regular expression describing that pattern.
 2. Traverse the automaton using the string to see whether it accepts or rejects the string.
 
 We are in a position now to attack our capstone problem. The problem 1 was to classify the substrings of a string given some string patterns.
@@ -653,10 +654,8 @@ and contain two pieces of information.
 We will represent a token like `<Tokentype, Lexeme>`. For example, the tokens for `12+123` are going to be
 `<positive_integer, 12>`, `<+, +>`, and `<positive_integer, 123>`.
 
-We ignore all whitespace while tokenizing a string.
-
-The way we do tokenization is as follows.
-1. Construct the regular expressions on which we want to tokenize strings.
+Tokenization is done as follows.
+1. Construct the regular expressions on which we want to tokenize the strings.
 2. Starting from the left, bite off the substrings of a given string that match those regular expressions.
 
 For example, for our above example, `12 + 123`, and using regular expressions representing positive integers and operator `+`, we proceed as follows.
@@ -668,7 +667,7 @@ For example, for our above example, `12 + 123`, and using regular expressions re
 
 Therefore, the output of tokenizing `12 + 123` is `<positive_integer, 12>, <+, +>, and <positive_integer, 123>`.
 
-Here's one problem with the above approach. Suppose we have the following regular expressions.
+There is a problem however with this approach. Suppose we have the following regular expressions.
 1. A regular expression for numbers: `(0|1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*`.
 2. A regular expression for single equals: `=`.
 3. A regular expression for double equals: `==`.
@@ -683,21 +682,22 @@ maximal munch policy, the next token is going to be `<==, ==>`.
 
 We can now sketch an algorithm to get the next token of a string given a string to tokenize and a string position from which we start the tokenization.
 
-```
+```cpp
 get_next_token(string, start_position)
-  list_of_regexes = <regexes we want to use to tokenize strings>.
+  list_of_regexes = <regexes we want to use to tokenize strings>;
   
-  next_lexeme = ""
-  candidate_lexeme = ""
-  for regex in list_of_regexes
-    candidate_lexeme = regex.match(string, start_position)
-    if candidate_lexeme is longer than next_lexeme
-      next_lexeme = candidate_lexeme
+  next_lexeme = "";
+  candidate_lexeme = "";
+  for (regex in list_of_regexes) {
+    candidate_lexeme = regex.match(string, start_position);
+    if (candidate_lexeme is longer than next_lexeme)
+      next_lexeme = candidate_lexeme;
+  }
   
-  return next_lexeme
+  return next_lexeme;
 ```
 
-With this algorithm, we have solved the problem 1 stated above.
+With this algorithm, we have solved our main problem. We have a way to tokenize substrings using a set of regular expressions.
 
 ## Conclusion
 A C++ implementation of the above ideas can be found [here](https://github.com/SaurabhJha/roady-lang/tree/master/tokeniser).
