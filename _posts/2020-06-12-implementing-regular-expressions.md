@@ -1,11 +1,11 @@
 ---
 layout: post
 title: Implementing regular expressions
-categories: [compilers, project]
+categories: [compilers, notes]
 ---
 <h1 class="text-center">{{ page.title }}</h1>
 <br/>
-## 1. Introduction
+## Introduction
 The first thing we do when we try to understand some program text is to divide it. For example, "12 + 34" can be divided into "12", "+", and "34".
 If we want to include spaces, we can divide them as "12", " ", "+", " ", and "34". Or if we are crazy, we can divide them as "12 +" and "34".
 
@@ -23,7 +23,7 @@ can be implemented. After we have discussed these implementations, we will put t
 This article assumes that you are comfortable with basic data structures and algorithms. We will use arrays, strings, hash tables, directed graphs, and
 recursion to develop the concepts in this article.
 
-## 2. Representing string patterns
+## Representing string patterns
 So how do we describe string patterns? One widely used notation is called *regular expression*. To understand regular expressions though,
 we need to define some new concepts.
 
@@ -165,7 +165,7 @@ Since regular expressions denote a set of strings, regular expressions describe 
   The language described by regular expressions are called regular languages.
 </div>
 
-## 4. Finite Automata
+## Finite Automata
 Finite automata is another mechanism to describe languages. Starting from directed graphs, we we will develop the concept of finite automata.
 
 #### Transition tables and transition graphs
@@ -436,7 +436,7 @@ Every finite automaton defines a language.
 
 The language defined by the above automaton is {"ab", "cd"}.
 
-## 5. Implementing regular expressions using finite automata.
+## Implementing regular expressions using finite automata.
 Both finite automata and regular expressions define languages. More importantly, *every regular expression has an equivalent finite automaton*. We won't
 give a proof of this statement in this article.
 
@@ -535,7 +535,7 @@ compile_regex_to_automaton("(a|b)(c|d)*")
 combine_using_concatenation(automaton_for_a_b, automaton_for_c_d*)
 ```
 
-## 6. Tokenization
+## Tokenization
 Using regular expressions and their finite automata implementations, we can implement a tokenizer. Given a set of regular expressions, a tokenizer divides
 a string into substrings.
 
