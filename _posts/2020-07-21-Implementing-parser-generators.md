@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Implementing parser generators
+title: Implementing parsers
 categories: [compilers, notes]
 ---
 <h1 class="text-center">{{ page.title }}</h1>
