@@ -5,6 +5,8 @@ categories: [compilers, project, matrices, rank-one, notes]
 ---
 <h1 class="text-center">{{ page.title }}</h1>
 <br/>
+*This is the first article in the study of rank one matrices. You can find all the articles related to rank one matrices [here](/categories/rank-one/).*
+
 Matrix multiplication is a fundamental operation in many areas of computer science. In this article, we will explore a new technique of doing matrix multiplications. We will first get some intuition by going through some examples. We will then formally prove that the new technique gives the same result as the standard matrix multiplication. Finally, we will discuss its possible applications.
 
 ## Prerequisites
