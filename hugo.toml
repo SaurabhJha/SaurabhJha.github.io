@@ -1,0 +1,40 @@
+baseURL = 'http://saurabhjha.github.io'
+languageCode = 'en-gb'
+title = 'Saurabh Jha'
+theme = 'paper'
+
+[params]
+# color style
+color = 'wheat'
+# social
+linkedin = 'saurabh-jha-51706349'
+github = 'saurabhjha'
+# home page profile
+name = 'Saurabh Jha'
+monoDarkIcon = true
+math = true
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+[markup.highlight]
+anchorLineNos = false
+codeFences = true
+guessSyntax = false
+hl_Lines = ''
+hl_inline = false
+lineAnchors = ''
+lineNoStart = 1
+lineNos = false
+lineNumbersInTable = true
+noClasses = true
+noHl = false
+style = 'monokai'
+tabWidth = 4
+[markup.goldmark.extensions]
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)']]

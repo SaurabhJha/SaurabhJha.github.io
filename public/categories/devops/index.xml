@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devops on Saurabh Jha</title>
+    <link>http://localhost:1313/categories/devops/</link>
+    <description>Recent content in Devops on Saurabh Jha</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <atom:link href="http://localhost:1313/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DevOps from a noob&#39;s perspective</title>
+      <link>http://localhost:1313/posts/2016-12-13-devops-from-noobs-perspective/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2016-12-13-devops-from-noobs-perspective/</guid>
+      <description>&lt;h1 id=&#34;pagetitle&#34;&gt;{{page.title}}&lt;/h1&gt;&#xA;&lt;p&gt;I am involved in some official project where I got a chance to set up web&#xA;infrastructure. This was the first time I did any kind of system&#xA;administration work so it has been an adventure.&lt;/p&gt;&#xA;&lt;p&gt;Here are some lessons I learned as I did and continue to do this work.&lt;/p&gt;&#xA;&lt;h2 id=&#34;read-the-fine-manual-rtfm&#34;&gt;Read the fine manual (RTFM)&lt;/h2&gt;&#xA;&lt;p&gt;Be ready to invest lots of time reading up documentation. For web applications:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

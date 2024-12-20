@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+<!-- Tag Title -->
+{{ if and .Title (eq .Type "tags") }}
+<h1 class="mb-14">#{{ .Title }}</h1>
+{{ end }}
+
+<!-- $pages -->
+{{ $pages := union .RegularPages .Sections }}<!---->
+{{ if .IsHome }}<!---->
+{{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}<!---->
+{{ end }}
+
+<!-- Articles -->
+{{ $paginator := .Paginate $pages }} {{ range $index, $page := $paginator.Pages
+}}<!---->
+
+<!-- avatar -->
+{{ if and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) }}<!---->
+
+<div class="-mt-2 mb-12 flex items-center">
+  <div class="break-words">
+    <p>
+      I am a software engineer at <a href="https://www.arm.com/">Arm</a> where I work on
+      <a href="https://gcc.gnu.org/">GCC</a>.
+    </p>
+    <p>
+      Outside of work, I am interested in computational biology. In particular, I am interested in the problem of
+      genome sequence alignment and how to make it faster.
+    </p>
+  </div>
+  <img src="img/me_canary_wharf.jpeg" class="profile-pic">
+</div>
+
+{{ end }}
+
+<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
+  {{ if gt .Weight 0 }}
+  <span class="mb-1 inline-block text-xs tracking-wider text-orange-500"
+    >Featured</span
+  >
+  {{ end }}
+  <h3 class="!my-0">{{ .Title }}</h3>
+  <time class="text-xs antialiased opacity-60">
+    {{ .Date | time.Format ":date_medium" }}
+  </time>
+  <a class="absolute inset-0 text-[0]" href="{{ .Permalink }}">{{ .Title }}</a>
+</section>
+{{ end }}
+
+<!-- Main Nav -->
+{{ if gt $paginator.TotalPages 1 }}
+<nav class="mt-14 flex">
+  {{ if $paginator.HasPrev }}
+  <a class="btn" href="{{ $paginator.Prev.URL }}">← {{ i18n "prev_page" }}</a>
+  {{ end }}<!---->
+  {{ if $paginator.HasNext }}
+  <a class="btn ml-auto" href="{{ $paginator.Next.URL }}"
+    >{{ i18n "next_page" }} →</a
+  >
+  {{ end }}
+</nav>
+{{ end }}<!---->
+
+{{ end }}

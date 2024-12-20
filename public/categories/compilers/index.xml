@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Compilers on Saurabh Jha</title>
+    <link>http://localhost:1313/categories/compilers/</link>
+    <description>Recent content in Compilers on Saurabh Jha</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <atom:link href="http://localhost:1313/categories/compilers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Implementing parsers</title>
+      <link>http://localhost:1313/posts/2020-07-21-implementing-parser-generators/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2020-07-21-implementing-parser-generators/</guid>
+      <description>&lt;h1 class=&#34;text-center&#34;&gt;{{ page.title }}&lt;/h1&gt;&#xA;&lt;br/&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Once we have tokenized some program text, we need to check whether the tokens are in the correct sequence. For example, which of the following token&#xA;sequences are valid?&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Tokenization of &amp;ldquo;32 + 4&amp;rdquo;: &amp;ldquo;&amp;lt;number, 32&amp;gt;, &amp;lt;+, +&amp;gt;, &amp;lt;number, 4&amp;gt;&amp;rdquo;.&lt;/li&gt;&#xA;&lt;li&gt;Tokenization of &amp;ldquo;+ 32 4&amp;rdquo;: &amp;ldquo;&amp;lt;+, +&amp;gt;, &amp;lt;number, 32&amp;gt;, &amp;lt;number, 4&amp;gt;&amp;rdquo;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Regular expressions are not powerful enough to make the choices like these.  The rules about which token sequences are valid constitute the&#xA;&lt;em&gt;syntax&lt;/em&gt; of a programming language. In this article, we will develop the concepts and techniques of checking syntactic correctness of a program&#xA;text.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

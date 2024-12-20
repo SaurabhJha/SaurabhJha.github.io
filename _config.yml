@@ -1,8 +1,0 @@
-baseurl: ''
-highlighter: rouge
-plugins:
-  - jekyll-category-pages
-permalink: /:year/:month/:day/:title:output_ext
-category_path: categories
-category_layout: category_index.html
-markdown: kramdown
