@@ -1,4 +1,4 @@
-baseURL = 'https://saurabhjha.github.io'
+baseURL = 'http://saurabhjha.github.io'
 languageCode = 'en-gb'
 title = 'Saurabh Jha'
 theme = 'paper'
