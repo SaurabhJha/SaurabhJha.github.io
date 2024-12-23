@@ -81,10 +81,10 @@ To build a lexical analyzer, we need a definition of the basic units of our lang
 1. (
 2. )
 3. positive integers
-4. +
-5. -
-6. *
-7. /
+4. \+
+5. \-
+6. \*
+7. \/
 8. identifers/variables
 9. =
 10. ==

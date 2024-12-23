@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Saurabh Jha</description>
     <generator>Hugo</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://saurabhjha.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I moved to compilers</title>
+      <link>https://saurabhjha.github.io/posts/2024-12-23-move-to-compilers/</link>
+      <pubDate>Mon, 23 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://saurabhjha.github.io/posts/2024-12-23-move-to-compilers/</guid>
+      <description>&lt;p&gt;In this article, I describe how I made the transition from working on web applications to working on compilers. I&amp;rsquo;ve&#xA;written this as a chronology. The chronology has gaps as it&amp;rsquo;s not a continuous timeline.&lt;/p&gt;&#xA;&lt;p&gt;I use some terminology that might be unfamiliar. I used it to add some flavour to my descriptions and I hope it won&amp;rsquo;t&#xA;deter you from reading.&lt;/p&gt;&#xA;&lt;h2 id=&#34;october-2019&#34;&gt;October 2019&lt;/h2&gt;&#xA;&lt;p&gt;I decided that I want to work on compilers. I had been working on web applications since early 2014 and wanted to&#xA;move on to more low-level areas of software engineering. The options I considered were operating systems, databases,&#xA;and compilers. I chose compilers as it also had a maths flavour in it.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Expressing LU factorization using rank one matrices</title>
       <link>https://saurabhjha.github.io/posts/2022-05-02-lu-rank-one/</link>
